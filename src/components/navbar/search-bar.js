@@ -30,7 +30,7 @@ const SearchBar = (props) => {
         const input = document.getElementById('search-manga-input');
         input.value=''
         if(suggestedSearch)setSuggestedSearch(false)
-        fetch('http://localhost:5000/getMangasByName/'+name)
+        fetch('https://moshimoshi-server.herokuapp.com/getMangasByName/'+name)
         .then(res=>res.json())
         .then(data=>{
             setMangas(data)
