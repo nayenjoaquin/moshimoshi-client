@@ -35,6 +35,7 @@ const SearchBar = (props) => {
         .then(data=>{
             setMangas(data)
             setLoading(false)
+            navigate("/1",{replace:true})
         })
     }
 
