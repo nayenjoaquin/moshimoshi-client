@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 
 const NavBar = (props) => {
 
-    const {mangas,carrito} = {...props}
+    const {mangas,setMangas,carrito, setLoading} = {...props}
     const [carritoSize,setCarritoSize] = useState(0)
 
     const navigate = useNavigate()
@@ -33,14 +33,16 @@ const NavBar = (props) => {
     
 
     const handleLogoClick = () => {
-        navigate("/", {replace:true})
+        navigate("/1", {replace:false})
+        setMangas(mangas)
+        document.location.reload()
     }
     return(
         <div className="navbar">
             <div className='logo-container' onClick={handleLogoClick}>
                 <img className='logo-img' src={logo} alt='Logo'></img>
             </div>
-            <SearchBar mangas={mangas}></SearchBar>
+            <SearchBar setLoading={setLoading} mangas={mangas} setMangas={setMangas}></SearchBar>
             <div className='cart-btn-container'>
                 <button className='cart-btn' id='cart-btn' onClick={e=>{
                     navigate("/cart", {replace:true})

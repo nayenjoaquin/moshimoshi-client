@@ -1,13 +1,15 @@
+import { faSquareCaretLeft, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../loading";
 import ProductInfo from "./product-info";
 
 const ProductPage = (props) => {
 
-    const {id} = useParams()
+    const {id,pageIndex} = useParams()
     const {addToCart} = {...props}
-
+    const navigate = useNavigate();
     const [manga, setManga] = useState([])
     const [loadingManga, setLoadingManga] = useState(false);
     const [imgSRC, setImgSRC] = useState("");
@@ -43,13 +45,17 @@ const ProductPage = (props) => {
             {
                 loadingManga
                 ?<Loading/>
-                :<div className="full-product">
-                    <div className="full-product-img-container"><img className="full-product-img" src={imgSRC} alt={manga[0]}></img></div>
-                    {
-                        manga!=null
-                        ? <ProductInfo addToCart={addToCart} amount={amount} rmvManga={rmvManga} addManga={addManga} manga={manga}/>
-                        : <Loading></Loading>
-                    }
+                :<div className="full-product-container">
+                    <button className="back-btn" onClick={e=>{
+                        navigate('/'+pageIndex,{replace:true})}}><FontAwesomeIcon icon={faXmark}/></button>
+                    <div className="full-product">
+                        <div className="full-product-img-container"><img className="full-product-img" src={imgSRC} alt={manga[0]}></img></div>
+                        {
+                            manga!=null
+                            ? <ProductInfo addToCart={addToCart} amount={amount} rmvManga={rmvManga} addManga={addManga} manga={manga}/>
+                            : <Loading></Loading>
+                        }
+                    </div>
                 </div>
             }
         </div>

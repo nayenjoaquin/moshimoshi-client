@@ -2,13 +2,13 @@ import MangaCard from "./manga-card";
 
 const Catalogo = (props) => {
 
-    const {mangas, addToCart} = {...props};
+    const {mangas, addToCart, pageIndex} = {...props};
 
     return(
         <div className="responsive-gallery">
             {
                 mangas.map((manga,key)=>{
-                    return <MangaCard manga={manga} key={key} addToCart={addToCart}/>
+                    return <MangaCard pageIndex={pageIndex} manga={manga} key={key} addToCart={addToCart}/>
                 })
             }
         </div>

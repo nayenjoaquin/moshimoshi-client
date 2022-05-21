@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 const MangaCard = (props) => {
 
-    const {manga, addToCart} = {...props}
+    const {manga, addToCart, pageIndex} = {...props}
     const name = manga[0];
     const price = manga[3];
     const stock = manga[5];
@@ -17,7 +17,7 @@ const MangaCard = (props) => {
         <div className="responsive-gallery-item">
             <p className="manga-card-name">{name}</p>
             <div className={mangaClass} onClick={e=>{
-                if(stock>0)navigate("/product/"+manga[6],{replace:true})
+                if(stock>0)navigate("/product/"+manga[6]+'/'+pageIndex,{replace:true})
             }}>
                 <img className="manga-card-img" src={imgSRC} alt={name}></img>
             </div>

@@ -11,10 +11,14 @@ function App() {
 
   const [carrito,setCarrito] = useState([]);
   const [mangas,setMangas] = useState([]);
+  const [shownMangas, setShownMangas] = useState([])
+  const [loading,setLoading] = useState(true)
 
   useEffect(()=>{
     getMangas().then(data=>{
       setMangas(data);
+      setShownMangas(data);
+      setLoading(false)
     })
   },[])
 
@@ -49,12 +53,19 @@ function App() {
   return (
     <div className="App">
       <div className="background-pattern"></div>
-        <NavBar mangas={mangas} carrito={carrito}/>
-        <Routes>
-          <Route path="/" element={<CatalogoPage mangas={mangas} addToCart={addToCart}/>}/>
-          <Route path="/product/:id" element={<ProductPage addToCart={addToCart}/>}/>
-          <Route path="/cart" element={<CarritoPage carrito={carrito} setCarrito={setCarrito}/>}/>
-        </Routes>
+        <NavBar setLoading={setLoading} mangas={mangas} setMangas={setShownMangas} carrito={carrito}/>
+        {
+          loading
+          ? <Loading/>
+          : <Routes>
+              <Route path="/" element={<CatalogoPage mangas={shownMangas} addToCart={addToCart}/>}/>
+              <Route path="/:page" element={<CatalogoPage mangas={shownMangas} addToCart={addToCart}/>}/>
+              <Route path="/product/:id" element={<ProductPage addToCart={addToCart}/>}/>
+              <Route path="/product/:id/:pageIndex" element={<ProductPage addToCart={addToCart}/>}/>
+              <Route path="/cart" element={<CarritoPage carrito={carrito} setCarrito={setCarrito}/>}/>
+            </Routes>
+        }
+        
     </div>
   );
 }
