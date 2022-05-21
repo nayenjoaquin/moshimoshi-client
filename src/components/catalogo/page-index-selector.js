@@ -9,6 +9,7 @@ const PageIndexSelector = (props) => {
             const aux = pageIndex+1;
             await setPageIndex(aux)
             getMangas(aux);
+            window.scrollTo({top: 0})
         }else alert('estás en la última página')
         
     }
@@ -17,6 +18,7 @@ const PageIndexSelector = (props) => {
             const aux = pageIndex-1;
             await setPageIndex(aux)
             getMangas(aux);
+            window.scrollTo({top: 0})
         }else alert('estás en la primera página')
     }
     const lastPage = async() => {
@@ -24,6 +26,7 @@ const PageIndexSelector = (props) => {
             const aux = maxPage;
             await setPageIndex(aux)
             getMangas(aux);
+            window.scrollTo({top: 0})
         }else alert('estás en la última página')
     }
     const firstPage = async() => {
@@ -31,6 +34,7 @@ const PageIndexSelector = (props) => {
             const aux = 1;
             await setPageIndex(aux)
             getMangas(aux);
+            window.scrollTo({top: 0})
         }else alert('estás en la primera página')
     }
     return(
