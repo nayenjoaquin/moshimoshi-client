@@ -62,7 +62,7 @@ function App() {
               <Route path="/:page" element={<CatalogoPage mangas={shownMangas} addToCart={addToCart}/>}/>
               <Route path="/product/:id" element={<ProductPage addToCart={addToCart}/>}/>
               <Route path="/product/:id/:pageIndex" element={<ProductPage addToCart={addToCart}/>}/>
-              <Route path="/cart" element={<CarritoPage carrito={carrito} setCarrito={setCarrito}/>}/>
+              <Route path="/cart" element={<CarritoPage setLoading={setLoading} carrito={carrito} setCarrito={setCarrito}/>}/>
             </Routes>
         }
         

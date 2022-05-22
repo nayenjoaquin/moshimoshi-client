@@ -66,7 +66,8 @@ code {
 
 .page{
   margin: auto;
-  height: auto;
+  height: 100vh;
+  width: 100vw;
   min-height: 100vh;
   padding: 20px ;
   padding-top: calc(10vh + 20px);
@@ -547,8 +548,10 @@ code {
 .carrito-form-row div{
   flex-grow: 1;
   margin: 10px 5px;
+  display: flex;
+  flex-direction: column;
 }
-.carrito-form-row div p{
+.carrito-form-row div label{
   flex-grow: 1;
   font-size: 16px;
   color: #333;
@@ -558,7 +561,7 @@ code {
 .carrito-form-row div input{
   height: 40px;
   padding: 5px;
-  width: 100%;
+  flex-grow: 1;
   border-radius: 5px;
   text-decoration: none;
   outline: none;

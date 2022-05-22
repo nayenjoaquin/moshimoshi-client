@@ -1,13 +1,12 @@
 import { faMessage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const CarritoForm = (props) => {
 
-    const {carrito}={...props}
-
-    const [venta, setVenta] = useState({})
+    const navigate = useNavigate();
+    const {carrito,setLoading}={...props}
 
     const handleSubmit = (e) => {
 
@@ -30,12 +29,42 @@ const CarritoForm = (props) => {
                 return '-'+item.manga[0]+'      x'+item.amount+`%0a`;
             })
 
-            const msj=`Hola!! soy ${inputs.nombre} y me gustaría realizar el siguiente pedido:%0a%0aPRODUCTOS:%0a${productos.join('\r\n')}%0a*TOTAL: $${total}*%0a%0aDirección de envío:%0a${inputs.direccion+"%0a"+inputs.ciudad+"%0a"+inputs.region}`;
+            const productosMail = productos.map(producto =>{
+                return producto.replace('%0a','')
+            })
+            const order = {
+                productos: productosMail.join('\r\n'),
+                carrito: carrito.map(item=>{
+                    return {mangaID:item.manga[6],amount:item.amount}
+                }),
+                total: total,
+                nombre: inputs.nombre,
+                correo: inputs.correo,
+                telefono: parseInt(inputs.telefono),
+                direccion: inputs.direccion,
+                ciudad: inputs.ciudad,
+                region: inputs.region
+            }
 
-            window.open(
-                "https://wa.me/56982172888/?text="+msj.replaceAll("#"," "),
-                '_blank' // <- This is what makes it open in a new window.
-              );
+            const orderJSON = JSON.stringify(order)
+
+            setLoading(true);
+            fetch('https://moshimoshi-server.herokuapp.com/newOrder',{
+                'method' : 'POST',
+                headers : {
+                    'Content-Type':'application/json'
+                },
+                body:orderJSON
+            }).then(response=>response.json()).then(orderId=>{
+                const msg=`*NUEVO PEDIDO N° ${orderId}*%0a%0aHola!! soy ${inputs.nombre} y me gustaría realizar el siguiente pedido:%0a%0aPRODUCTOS:%0a${productos.join('\r\n')}%0a*TOTAL: $${total}*%0a%0aDirección de envío:%0a${inputs.direccion+"%0a"+inputs.ciudad+"%0a"+inputs.region}`;
+                 window.open(
+                    "https://wa.me/56982172888/?text="+msg.replaceAll("#"," "),
+                    '_blank' // <- This is what makes it open in a new window.
+                );
+                navigate('/',{replace:true})
+                setLoading(false)
+            })
+
         }
     }
 
