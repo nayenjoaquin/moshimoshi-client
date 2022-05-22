@@ -35,7 +35,6 @@ const NavBar = (props) => {
     const handleLogoClick = () => {
         navigate("/1", {replace:false})
         setMangas(mangas)
-        document.location.reload()
     }
     return(
         <div className="navbar">

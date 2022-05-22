@@ -63,6 +63,7 @@ const CarritoForm = (props) => {
                 );
                 navigate('/',{replace:true})
                 setLoading(false)
+                document.location.reload()
             })
 
         }

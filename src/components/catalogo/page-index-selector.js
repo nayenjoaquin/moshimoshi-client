@@ -1,7 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAnglesLeft, faAngleRight, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const PageIndexSelector = (props) => {
+
+    const navigate = useNavigate()
     const {pageIndex, setPageIndex, getMangas, maxPage} = {...props}
 
     const nextPage = async() => {
@@ -10,6 +13,7 @@ const PageIndexSelector = (props) => {
             await setPageIndex(aux)
             getMangas(aux);
             window.scrollTo({top: 0})
+            navigate("/"+aux, {replace:false})
         }else alert('estás en la última página')
         
     }
@@ -19,6 +23,7 @@ const PageIndexSelector = (props) => {
             await setPageIndex(aux)
             getMangas(aux);
             window.scrollTo({top: 0})
+            navigate("/"+aux, {replace:false})
         }else alert('estás en la primera página')
     }
     const lastPage = async() => {
@@ -27,6 +32,7 @@ const PageIndexSelector = (props) => {
             await setPageIndex(aux)
             getMangas(aux);
             window.scrollTo({top: 0})
+            navigate("/"+aux, {replace:false})
         }else alert('estás en la última página')
     }
     const firstPage = async() => {
@@ -35,6 +41,7 @@ const PageIndexSelector = (props) => {
             await setPageIndex(aux)
             getMangas(aux);
             window.scrollTo({top: 0})
+            navigate("/"+aux, {replace:false})
         }else alert('estás en la primera página')
     }
     return(
