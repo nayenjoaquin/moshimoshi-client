@@ -5,6 +5,8 @@ import CatalogoPage from "./components/catalogo/catalogo-page";
 import Loading from "./components/loading";
 import NavBar from "./components/navbar/navbar";
 import ProductPage from "./components/product/product-page";
+import SentOrder from "./components/carrito/sent-order";
+import OrderError from "./components/carrito/order-error";
 
 
 function App() {
@@ -63,6 +65,8 @@ function App() {
               <Route path="/product/:id" element={<ProductPage addToCart={addToCart}/>}/>
               <Route path="/product/:id/:pageIndex" element={<ProductPage addToCart={addToCart}/>}/>
               <Route path="/cart" element={<CarritoPage setLoading={setLoading} carrito={carrito} setCarrito={setCarrito}/>}/>
+              <Route path="/sentOrder" element={<SentOrder/>}/>
+              <Route path="/orderError" element={<OrderError/>}/>
             </Routes>
         }
         

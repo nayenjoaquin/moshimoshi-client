@@ -169,7 +169,7 @@ code {
   font-size: 12px;
   font-weight: 500;
   color: white;
-  transform: translate(2px,-5px);
+  transform: translate(2px,-6px);
 }
 
 
@@ -469,7 +469,7 @@ code {
   font-size: 16px;
   min-width: 300px;
   width: 100%;
-  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .carrito-item-name{
@@ -479,6 +479,7 @@ code {
 .carrito-item-info-container{
   display: flex;
   align-items: center;
+  gap: 15px;
 }
 
 
@@ -486,7 +487,6 @@ code {
 .carrito-amount-selector{
   min-width: 10px;
   width: 70px;
-  margin-left: 20px;
 }
 .carrito-amount-selector button{
   font-size: 12px;
@@ -499,13 +499,11 @@ code {
 }
 
 .rmv-carrito-item-btn{
-  margin-left: 15px;
-  font-size: 16px;
+  font-size: 20px;
   background-color: transparent;
   border: none;
   color: rgb(102, 75, 148);
   cursor: pointer;
-  padding: 5px;
 }
 
 .carrito-list-footer{
@@ -526,6 +524,7 @@ code {
   max-width: 1200px;
   margin: 0 auto;
   align-items: center;
+  gap: 10px;
 }
 
 .carrito-form-header{
@@ -535,8 +534,6 @@ code {
   font-size: 24px;
   font-weight: 600;
   color: #333;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 .carrito-form-row{
   display: flex;
@@ -544,24 +541,24 @@ code {
   max-width: 1000px;
   justify-content: space-between;
   flex-wrap: wrap;
+  gap: 10px;
 }
 .carrito-form-row div{
-  flex-grow: 1;
-  margin: 10px 5px;
+  width: 200px;
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
+  gap: 5px;
 }
 .carrito-form-row div label{
-  flex-grow: 1;
   font-size: 16px;
   color: #333;
   width: 100px;
-  margin-bottom: 5px;
 }
 .carrito-form-row div input{
   height: 40px;
+  width: 100%;
   padding: 5px;
-  flex-grow: 1;
   border-radius: 5px;
   text-decoration: none;
   outline: none;
@@ -604,7 +601,31 @@ code {
   transform: translateY(1px);
 }
 
-
+.sent-order-page{
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 90%;
+  max-width: 500px;
+}
+.sent-order-title{
+  font-size: 32px;
+  color: #333;
+  font-weight: 600;
+}
+.sent-order-description{
+  color: #333;
+}
+.sent-order-logo{
+  width: 100%;
+  height: 150px;
+}
+.sent-order-logo img{
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
 
 
 

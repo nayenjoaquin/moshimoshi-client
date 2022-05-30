@@ -8,6 +8,10 @@ const CarritoForm = (props) => {
     const navigate = useNavigate();
     const {carrito,setLoading}={...props}
 
+    const wspMsg = (wspLink) => {
+        window.open(wspLink, '_blank');
+    }
+
     const handleSubmit = (e) => {
 
         e.preventDefault();
@@ -49,6 +53,8 @@ const CarritoForm = (props) => {
             const orderJSON = JSON.stringify(order)
 
             setLoading(true);
+            var win = window.open("about:blank",'_blank')
+
             fetch('https://moshimoshi-server.herokuapp.com/newOrder',{
                 'method' : 'POST',
                 headers : {
@@ -56,14 +62,14 @@ const CarritoForm = (props) => {
                 },
                 body:orderJSON
             }).then(response=>response.json()).then(orderId=>{
-                const msg=`*NUEVO PEDIDO N° ${orderId}*%0a%0aHola!! soy ${inputs.nombre} y me gustaría realizar el siguiente pedido:%0a%0aPRODUCTOS:%0a${productos.join('\r\n')}%0a*TOTAL: $${total}*%0a%0aDirección de envío:%0a${inputs.direccion+"%0a"+inputs.ciudad+"%0a"+inputs.region}`;
-                 window.open(
-                    "https://wa.me/56982172888/?text="+msg.replaceAll("#"," "),
-                    '_blank' // <- This is what makes it open in a new window.
-                );
-                navigate('/',{replace:true})
+                const msg=`NUEVO PEDIDO N° ${orderId}%0a%0aHola!! soy ${inputs.nombre} y me gustaría realizar el siguiente pedido:%0a%0aPRODUCTOS:%0a${productos.join('\r\n')}%0a*TOTAL: $${total}*%0a%0aDirección de envío:%0a${inputs.direccion+"%0a"+inputs.ciudad+"%0a"+inputs.region}`;
+                const wspLink = "https://wa.me/56982172888/?text="+msg.replaceAll("#"," ");
+                win.location= wspLink
+                navigate('/sentOrder',{replace:true})
                 setLoading(false)
-                document.location.reload()
+            }).catch(error=>{
+                console.log(error);
+                alert("hubo un error con su pedido")
             })
 
         }
@@ -86,7 +92,7 @@ const CarritoForm = (props) => {
                 <div className="carrito-form-row">
                     <div>
                         <label>* Teléfono:</label>
-                        <input name="telefono" className="carrito-form-input" type="number" size={9} placeholder="9XXXXXXXX..." required></input>
+                        <input name="telefono" className="carrito-form-input" type="tel" size={9} placeholder="9XXXXXXXX..." required></input>
                     </div>
                     <div>
                         <label>* Dirección:</label>
