@@ -14,8 +14,12 @@ const ProductInfo = (props) => {
                     <button className="add-manga" onClick={addManga}>+</button>
                 </div>
             </div>
-            <button className="add-to-cart-btn add-to-cart-btn-full" onClick={e=>addToCart(manga,amount)
-            }>Agregar al carrito</button>
+            {
+                manga[5]>0
+                ? <button className="add-to-cart-btn add-to-cart-btn-full" onClick={e=>addToCart(manga,amount)
+                }>Agregar al carrito</button>
+                : <button className="add-to-cart-btn add-to-cart-btn-full sold-out-btn">Producto agotado</button>
+            }
             <div className="full-product-details">
                 <p className="full-product-details-title">Detalles del producto</p>
                 <p className="full-product-size">Tamaño: {manga[1]}</p>
