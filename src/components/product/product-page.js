@@ -1,4 +1,4 @@
-import { faSquareCaretLeft, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -7,7 +7,7 @@ import ProductInfo from "./product-info";
 
 const ProductPage = (props) => {
 
-    const {id,pageIndex} = useParams()
+    const {id,pageIndex=1} = useParams()
     const {addToCart} = {...props}
     const navigate = useNavigate();
     const [manga, setManga] = useState([])
@@ -47,7 +47,7 @@ const ProductPage = (props) => {
                 ?<Loading/>
                 :<div className="full-product-container">
                     <button className="back-btn" onClick={e=>{
-                        navigate('/'+pageIndex,{replace:true})}}><FontAwesomeIcon icon={faXmark}/></button>
+                        navigate('/'+pageIndex)}}><FontAwesomeIcon icon={faXmark}/></button>
                     <div className="full-product">
                         <div className="full-product-img-container"><img className="full-product-img" src={imgSRC} alt={manga[0]}></img></div>
                         {

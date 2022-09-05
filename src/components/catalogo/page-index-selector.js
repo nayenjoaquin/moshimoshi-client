@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 const PageIndexSelector = (props) => {
 
     const navigate = useNavigate()
-    const {pageIndex, setPageIndex, getMangas, maxPage} = {...props}
+    const {pageIndex, setPageIndex, getMangas, maxPage, setLoading} = {...props}
 
     const nextPage = async() => {
         if(pageIndex<maxPage){
+            setLoading(true)
             const aux = pageIndex+1;
             await setPageIndex(aux)
             getMangas(aux);
@@ -19,6 +20,7 @@ const PageIndexSelector = (props) => {
     }
     const previousPage = async() => {
         if(pageIndex>1){
+            setLoading(true)
             const aux = pageIndex-1;
             await setPageIndex(aux)
             getMangas(aux);
@@ -28,6 +30,7 @@ const PageIndexSelector = (props) => {
     }
     const lastPage = async() => {
         if(pageIndex<maxPage){
+            setLoading(true)
             const aux = maxPage;
             await setPageIndex(aux)
             getMangas(aux);
@@ -37,6 +40,7 @@ const PageIndexSelector = (props) => {
     }
     const firstPage = async() => {
         if(pageIndex>1){
+            setLoading(true)
             const aux = 1;
             await setPageIndex(aux)
             getMangas(aux);

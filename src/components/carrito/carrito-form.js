@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 const CarritoForm = (props) => {
 
     const navigate = useNavigate();
-    const {carrito,setLoading}={...props}
+    const {carrito}={...props}
 
     const wspMsg = (wspLink) => {
         window.open(wspLink, '_blank');
@@ -52,7 +52,6 @@ const CarritoForm = (props) => {
 
             const orderJSON = JSON.stringify(order)
 
-            setLoading(true);
             var win = window.open("about:blank",'_blank')
 
             fetch('https://moshimoshi-server.herokuapp.com/newOrder',{
@@ -66,7 +65,6 @@ const CarritoForm = (props) => {
                 const wspLink = "https://wa.me/56982172888/?text="+msg.replaceAll("#"," ");
                 win.location= wspLink
                 navigate('/sentOrder',{replace:true})
-                setLoading(false)
             }).catch(error=>{
                 console.log(error);
                 alert("hubo un error con su pedido")

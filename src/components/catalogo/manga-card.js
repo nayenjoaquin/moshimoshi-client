@@ -19,7 +19,7 @@ const MangaCard = (props) => {
             <div className={mangaClass} onClick={e=>{
                 if(stock>0)navigate("/product/"+manga[6]+'/'+pageIndex,{replace:true})
             }}>
-                <img className="manga-card-img" src={imgSRC} alt={name}></img>
+                <img loading="lazy" className="manga-card-img" src={imgSRC} alt={name}></img>
             </div>
             <div className='manga-card-info'>
                 <p className='manga-card-price'>${price}</p>
@@ -32,6 +32,12 @@ const MangaCard = (props) => {
                     addToCart(manga,1)
                 }}>Agregar al carrito</button>
                 : <button className='sold-out-btn'>Producto agotado</button>
+            }
+
+            {
+                stock==0
+                ? <div className="sold-out-sign">AGOTADO</div>
+                : null
             }
             
         </div>

@@ -6,7 +6,7 @@ const MangaSuggestion = (props) => {
 
     return(
         <div className="manga-suggestion" onClick={()=>{
-            handleSuggestionClick(manga[6])
+            handleSuggestionClick(manga[1])
         }}>
             {manga[0]}
         </div>

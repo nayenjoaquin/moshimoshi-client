@@ -38,7 +38,7 @@ code {
 
 .navbar{
   background-color: rgb(255, 255, 255);
-  height: 10vh;
+  height: 80px;
   width: 100%;
   box-shadow: 0 2px 10px rgba(0,0,0,.3);
   display: flex;
@@ -48,18 +48,18 @@ code {
   z-index: 10;
 }
 .logo-container{
-  width: 10vh;
-  height: 10vh;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
   display: flex;
   cursor: pointer;
   padding: 15px;
+  transition: all .1s ease;
+}
+.logo-container:hover{
+  transform: translateY(-3px);
 }
 .logo-img{
-  width: 100%;
-  height: 100%;
-}
-.logo-name{
   width: 100%;
   height: 100%;
 }
@@ -70,7 +70,7 @@ code {
   width: 100vw;
   min-height: 100vh;
   padding: 20px ;
-  padding-top: calc(10vh + 20px);
+  padding-top: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -78,7 +78,7 @@ code {
 
 .search-bar{
   flex-grow: 1;
-  max-width: 800px;
+  max-width: 600px;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -89,8 +89,8 @@ code {
   width: 100%;
   border: none;
   padding: 0 2vh;
-  height: 5vh;
-  border-radius: 2.5vh;
+  height: 40px;
+  border-radius: 20px;
   text-decoration: none;
   outline: none;
   border: 2px solid rgb(102, 75, 148);
@@ -109,10 +109,10 @@ code {
 .suggested-search-container{
   position: absolute;
   background-color: white;
-  max-width: 700px;
+  max-width: 600px;
   width: 100%;
   box-shadow: 0 5px 5px rgba(0,0,0,.2);
-  margin-top: 10vh;
+  margin-top: 80px;
   max-height: 75vh;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -129,9 +129,9 @@ code {
 }
 
 .cart-btn-container{
-  width: 10vh;
-  height: 10vh;
-  padding: 15px;
+  width: 80px;
+  height: 80px;
+  padding: 10px;
   display: flex;
 }
 .cart-btn{
@@ -141,7 +141,7 @@ code {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: all .2s ease;
+  transition: all .1s ease;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -151,7 +151,7 @@ code {
 }
 
 .cart-btn:hover{
-  transform: scale(1.1);
+  transform: translateY(-3px);
   color: rgb(98, 76, 138);
 }
 
@@ -217,6 +217,20 @@ code {
   max-width: 240px;
   flex-direction: column;
   align-items: center;
+  position: relative;
+}
+
+.sold-out-sign{
+  position: absolute;
+  background-color: red;
+  font-size: 36px;
+  width: 105%;
+  text-align: center;
+  color: white;
+  font-weight: 800;
+  top: 38%;
+  transform: rotate(-10deg);
+  user-select: none;
 }
 
 .manga-card-name{
@@ -270,11 +284,11 @@ code {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   font-size: 16px;
-  transition: all ease .2s;
+  transition: all ease .1s;
 }
 .add-to-cart-btn:hover{
   background-color: rgb(90, 63, 133);
-  transform: scale(1.02);
+  transform: translateY(-3px);
 }
 .add-to-cart-btn:active{
   transform: scale(.98);

@@ -1,50 +1,50 @@
 import Catalogo from "./catalogo";
 import { useEffect, useState } from "react";
-import Loading from "../loading";
 import PageIndexSelector from "./page-index-selector";
 import { useParams } from "react-router-dom";
+import CatalogoLoading from "./catalogo-loading";
 
 const CatalogoPage = (props) => {
 
     const {page} = useParams();
-    const { mangas , addToCart} = {...props}
-    const [mangasByIndex, setMangasByIndex] = useState([]);
+    const {addToCart} = {...props}
     const [pageIndex, setPageIndex] = useState(1);
     const [maxPage, setMaxPage] = useState(1);
+    const [loading, setLoading] = useState(true);
+    const [mangas, setMangas] = useState([]);
 
     useEffect(()=>{
-        setMaxPage(Math.floor(mangas.length/40)+1)
-        if(page!=null){
+        setMaxPage(21)
+        if(page>=1){
             setPageIndex(parseInt(page))
-            getMangasByIndex(page)
+            getMangas(page)
         }else{
             setPageIndex(1)
-            getMangasByIndex(1)
+            getMangas(1)
         }
-    },[mangas,page])
+    },[page])
 
-    const getMangasByIndex = (index) => {
-        if (mangas.length===0) return null;
-        else{
-            var aux=[];
-            for (var i=(index-1)*40; i<index*40;i++){
-                if(mangas[i]!=null)aux=[...aux,mangas[i]];
-            }
-            setMangasByIndex([...aux])
-        }
+
+    const getMangas = (pageIndex) => {
+        setLoading(true)
+        fetch('https://moshimoshi-server.herokuapp.com/getMangasByPage/'+pageIndex)
+        .then(response => response.json())
+        .then(data => {
+            setMangas(data)
+            setLoading(false)
+        })
     }
 
 
     return(
         <div className="page">
             
-            <PageIndexSelector maxPage={maxPage} pageIndex={pageIndex} setPageIndex={setPageIndex} getMangas={getMangasByIndex}/>
-            {
-                mangasByIndex.length>0
-                ? <Catalogo mangas={mangasByIndex} addToCart={addToCart} pageIndex={pageIndex}/>
-                : <Loading></Loading>
-            }
-            <PageIndexSelector maxPage={maxPage} pageIndex={pageIndex} setPageIndex={setPageIndex} getMangas={getMangasByIndex}/>
+            <PageIndexSelector maxPage={maxPage} pageIndex={pageIndex} setPageIndex={setPageIndex} setLoading={setLoading} getMangas={getMangas}/>
+                {
+                    loading ? <CatalogoLoading/> :
+                    <Catalogo addToCart={addToCart} pageIndex={pageIndex} mangas={mangas}/>
+                }
+            <PageIndexSelector maxPage={maxPage} pageIndex={pageIndex} setPageIndex={setPageIndex} setLoading={setLoading} getMangas={getMangas}/>
         </div>
     )
     

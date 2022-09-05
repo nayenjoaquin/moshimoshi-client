@@ -4,7 +4,7 @@ import MangaSuggestion from "./manga-suggestion";
 
 const SearchBar = (props) => {
 
-    const {mangas,setMangas,setLoading} = {...props}
+    const {mangasNameList} = {...props}
 
     const navigate = useNavigate()
 
@@ -25,31 +25,16 @@ const SearchBar = (props) => {
         navigate("/product/"+id,{replace:true})
     }
 
-    const handleSearchInputSubmit = (name) => {
-        setLoading(true);
-        const input = document.getElementById('search-manga-input');
-        input.value=''
-        if(suggestedSearch)setSuggestedSearch(false)
-        fetch('https://moshimoshi-server.herokuapp.com/getMangasByName/'+name)
-        .then(res=>res.json())
-        .then(data=>{
-            setMangas(data)
-            setLoading(false)
-            navigate("/1",{replace:true})
-        })
-    }
 
     return(
         <div className="search-bar">
             <input className="search-input" placeholder="Buscar..." autoComplete="off" onChange={e=>{
                 handleSearchInputChange(e.target.value)
-            }} id='search-manga-input' onKeyDown={e=>{
-                if(e.key==='Enter')handleSearchInputSubmit(e.target.value)
-            }}></input>
+            }} id='search-manga-input'></input>
             <div className="suggested-search-container">
                 {
                     suggestedSearch
-                    ?mangas.filter(manga => manga[0].toLowerCase().includes(searchValue.toLowerCase())).map((value,key)=>{
+                    ?mangasNameList.filter(manga => manga[0].toLowerCase().includes(searchValue.toLowerCase())).map((value,key)=>{
                         return <MangaSuggestion manga={value} key={key} handleSuggestionClick={handleSuggestionClick}/>
                     })
                     :<></>

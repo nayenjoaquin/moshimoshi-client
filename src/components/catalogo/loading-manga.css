@@ -1,0 +1,50 @@
+.loading-manga-card{
+    width: 170px;
+    display: flex;
+    flex-grow: 1;
+    max-width: 240px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.loading-manga-card *{
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
+}
+
+.loading-manga-card__title{
+    height: 40px;
+    width: 100%;
+    background: #fbfbfb;
+    background: linear-gradient(110deg, #fbfbfb 8%, white 18%, #fbfbfb 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+    animation: 1.5s shine linear infinite;
+}
+
+.loading-manga-card__img{
+    height: 250px;
+    width: 80%;
+    background: #fbfbfb;
+    background: linear-gradient(110deg, #fbfbfb 8%, white 18%, #fbfbfb 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+    animation: 1.5s shine linear infinite;
+}
+
+.loading-manga-card__btn{
+    height: 50px;
+    width: 100%;
+    background: #fbfbfb;
+    background: linear-gradient(110deg, #fbfbfb 8%, white 18%, #fbfbfb 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+    animation: 1.5s shine linear infinite;
+}
+
+
+@keyframes shine {
+    to {
+      background-position-x: -200%;
+    }
+}
