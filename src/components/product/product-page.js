@@ -49,7 +49,12 @@ const ProductPage = (props) => {
                     <button className="back-btn" onClick={e=>{
                         navigate('/'+pageIndex)}}><FontAwesomeIcon icon={faXmark}/></button>
                     <div className="full-product">
-                        <div className="full-product-img-container"><img className="full-product-img" src={imgSRC} alt={manga[0]}></img></div>
+                        {
+                            manga[5]==0
+                            ?<div className="full-product-img-container"><img className="full-product-img full-product-img-agotado" src={imgSRC} alt={manga[0]}></img></div>
+                            :<div className="full-product-img-container"><img className="full-product-img" src={imgSRC} alt={manga[0]}></img></div>
+                        }
+                        
                         {
                             manga!=null
                             ? <ProductInfo addToCart={addToCart} amount={amount} rmvManga={rmvManga} addManga={addManga} manga={manga}/>

@@ -357,6 +357,10 @@ code {
   max-height: 600px;
 }
 
+.full-product-img-agotado{
+  filter: blur(1px) grayscale() brightness(.7);  
+}
+
 .full-product-info{
   display: flex;
   flex-direction: column;
@@ -432,6 +436,12 @@ code {
 .add-to-cart-btn-full{
   margin-bottom: 30px;
   max-width: 500px;
+}
+
+.sold-out-btn:hover{
+  background-color: rgb(126, 126, 126);
+  transform: none;
+  cursor: auto;
 }
 
 .full-product-details-title{
