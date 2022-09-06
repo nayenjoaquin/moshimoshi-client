@@ -245,6 +245,11 @@ code {
 .manga-card-img-container{
   height: 250px;
   cursor: pointer;
+  transition: all .1s ease;
+}
+
+.manga-card-img-container:hover{
+  transform: translateY(-3px);
 }
 
 .sold-out{
