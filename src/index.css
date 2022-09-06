@@ -469,12 +469,14 @@ code {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   margin: auto;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
 }
 
 .carrito-list{
   margin: auto;
-  width: 95%;
-  max-width: 1000px;
+  flex-grow: 100;
   display: flex;
   flex-direction: column;
 }
@@ -546,19 +548,21 @@ code {
   margin-bottom: 20px;
 }
 
+.carrito-page form{
+  flex-grow: 1;
+  display: flex;
+}
+
 .carrito-form{
   display: flex;
   flex-direction: column;
-  width: 95%;
-  max-width: 1200px;
-  margin: 0 auto;
+  flex-grow: 1;
   align-items: center;
   gap: 10px;
 }
 
 .carrito-form-header{
-  width: 95%;
-  max-width: 1000px;
+  width: 100%;
   padding: 5px;
   font-size: 24px;
   font-weight: 600;
@@ -613,11 +617,11 @@ code {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   font-size: 20px;
   cursor: pointer;
-  transition: all .2s ease;
+  transition: all .1s ease;
 }
 
 .send-compra-btn:hover{
-  transform: scale(1.03);
+  transform: translateY(-3px);
   background-color: rgb(6, 100, 6);
 }
 
